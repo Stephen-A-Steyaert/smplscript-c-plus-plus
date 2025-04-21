@@ -19,33 +19,33 @@
 */
 
 #pragma once
-#ifndef LEXER_H
-#define LEXER_H
+#ifndef POSITION_H
+#define POSITION_H
 
-#include "../token/token.h"
-#include "../position/position.h"
 #include <string>
-#include <vector>
 
-/*
-* Lexer object will be use to tokenize input code.
-*/
 namespace std{
+/*
+* Position object to keep track of the current position in the source code.
+*/
+    class Position {
+    public:
+        Position(int index, int line, int col, std::string fileName, std::string fileContents);
+        Position* advance(char c);
+        Position* copy();
+        int getIndex();
+        std::string getFileName();
+        int getLineNumber();
 
-	class Lexer
-	{
-	public:
-		Lexer();
-		Lexer(std::string fileName, std::string text);
-		std::vector<std::Token> generateTokens();
-	private:
-		void advance();
-		std::Token makeNumber();
-		std::string mFileName;
-		std::string mText;
-		char mCurrentChar;
-		std::Position* mCurrentPos;
-	};
+    private:
+        int mIndex;
+        int mLine;
+        int mCol;
+        std::string mFileName;
+        std::string mFileContents;
 
+    };
+    
 }
+
 #endif
