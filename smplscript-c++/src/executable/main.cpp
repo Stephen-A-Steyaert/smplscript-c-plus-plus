@@ -23,13 +23,10 @@
 #include <string>
 #include <cctype>
 #include <algorithm>  // for std::transform
-#include "../library/include/entrypoint/entrypoint.h"
-#include "../library/include/constants/license.h"
-#include "error/illegalCharacterError.h"
+#include "../library/include/common/common.h"
 
-/*
- * Bare main function, will be used as the entry point.
- */
+ 
+/// @brief Main function, will be used as the entry point.
 int main(int argc, char* argv[])
 {
     std::string text, textcpy;

@@ -18,14 +18,15 @@
 
 */
 
-#include "include/position/position.h"
+#include "common/common.h"
+
 
 /// Default constructor. Initializes all members to default values.
 Position::Position()
     : mIndex(0), mLine(0), mCol(0), mFileName(""), mFileContents("") {}
 
 /// Parameterized constructor
-Position::Position(int index, int line, int col, const std::string &fileName, const std::string &fileContents)
+Position::Position(int index, int line, int col, const std::string &fileName, std::string_view fileContents)
     : mIndex(index), mLine(line), mCol(col), mFileName(fileName), mFileContents(fileContents) {}
 
 /// Advances the position by one character

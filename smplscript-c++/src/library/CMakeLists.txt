@@ -18,24 +18,19 @@
 add_library(library)
 
 target_sources(library 
-PRIVATE
-    entrypoint.cpp
-    error.cpp
-    illegalCharacterError.cpp
-    lexer.cpp
-    token.cpp
-    position.cpp
-PUBLIC
-    include/constants/constants.h
-    include/constants/license.h
-    include/entrypoint/entrypoint.h
-    include/error/error.h
-    include/error/illegalCharacterError.h
-    include/lexer/lexer.h
-    include/position/position.h
-    include/token/token.h
+    PRIVATE
+        entrypoint.cpp
+        error.cpp
+        illegalCharacterError.cpp
+        lexer.cpp
+        token.cpp
+        position.cpp
 )
 
 target_include_directories(library PUBLIC include)
 
+# Use common.h as a precompiled header
+target_precompile_headers(library PRIVATE include/common/common.h)
+
 add_library(smplscript::library ALIAS library)
+

@@ -18,7 +18,7 @@
 
 */
 
-#include "include/error/illegalCharacterError.h"
+#include "common/common.h"
 
 /// Default constructor delegates to base Error with empty parameters.
 IllegalCharacterError::IllegalCharacterError()

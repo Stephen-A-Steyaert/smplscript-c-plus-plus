@@ -19,30 +19,38 @@
 */
 
 #pragma once
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
 
 #include <string>
 
-/*
-Constants for Lexer, Parser. Will eventually contain keywords
-for defining functions, while and for loops, etc.
-*/
+/// @brief type for integer literals.
+inline const std::string TT_INT = "TT_INT";
 
+/// @brief type for floating-point literals.
+inline const std::string TT_FLOAT = "TT_FLOAT";
 
+/// @brief type for the '+' operator.
+inline const std::string TT_PLUS = "TT_PLUS";
 
-const std::string TT_INT = "TT_INT";
-const std::string TT_FLOAT = "TT_FLOAT";
-const std::string TT_PLUS = "TT_PLUS";
-const std::string TT_MINUS = "TT_MINUS";
-const std::string TT_MUL = "TT_MUL";
-const std::string TT_DIV = "TT_DIV";
-const std::string TT_LPAREN = "TT_LPAREN";
-const std::string TT_RPAREN = "TT_RPAREN";
+/// @brief Token type for the '-' operator.
+inline const std::string TT_MINUS = "TT_MINUS";
 
-// Alphanumeric constants
-const std::string DIGITS = "0123456789";
-const std::string LETTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+/// @brief type for the '*' operator.
+inline const std::string TT_MUL = "TT_MUL";
 
+/// @brief type for the '/' operator.
+inline const std::string TT_DIV = "TT_DIV";
 
-#endif
+/// @brief type for '('.
+inline const std::string TT_LPAREN = "TT_LPAREN";
+
+/// @brief type for ')'.
+inline const std::string TT_RPAREN = "TT_RPAREN";
+
+/// @brief Token type for the end of the file.
+inline const std::string TT_EOF = "TT_EOF";
+
+/// @brief digit characters (0–9).
+inline const std::string DIGITS = "0123456789";
+
+/// @brief letter characters (A–Z, a–z).
+inline const std::string LETTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";

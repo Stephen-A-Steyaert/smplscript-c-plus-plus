@@ -20,8 +20,8 @@
 
 
 #include <iostream>
-#include "include/error/error.h"
-#include "include/position/position.h"
+#include "common/common.h"
+
 
 Error::Error(const std::string& errorName, const Position& posStart, const Position& posEnd, const std::string& details)
     : mErrorName(errorName), mDetails(details), mPosStart(posStart), mPosEnd(posEnd) {}

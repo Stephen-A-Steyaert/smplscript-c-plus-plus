@@ -19,17 +19,13 @@
 */
 
 #pragma once
-#ifndef ENTRYPOINT_H
-#define ENTRYPOINT_H
 
 #include <string>
 #include <vector>
 #include "../token/token.h"
 
-/// Runs the lexer and parser on the provided source code text.
+/// @brief Runs the lexer and parser on the provided source code text.
 /// @param fileName The name of the source file (used for error reporting).
 /// @param text The source code text to process.
 /// @return A vector of tokens produced from the input text.
-std::vector<Token> run(const std::string& fileName, const std::string& text);
-
-#endif // ENTRYPOINT_H
+std::vector<Token> run(const std::string &fileName, const std::string &text);

@@ -18,8 +18,7 @@
 
 */
 
-#include "include/entrypoint/entrypoint.h"
-#include "include/lexer/lexer.h"
+#include "include/common/common.h"
 #include <string>
 #include <vector>
 

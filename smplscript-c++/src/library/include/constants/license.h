@@ -21,6 +21,7 @@
 #include <string>
 #include <unordered_map>
 
+/// @brief Header to the GNU-GPL 
 const std::string header = 
 "                    GNU GENERAL PUBLIC LICENSE\n\
                        Version 3, 29 June 2007\n\
@@ -29,6 +30,7 @@ const std::string header =
  Everyone is permitted to copy and distribute verbatim copies\n\
  of this license document, but changing it is not allowed.";
 
+ /// @brief Preamble to the GNU-GPL
 const std::string preamble = 
  "                            Preamble\n\
 \n\
@@ -93,7 +95,7 @@ patents cannot be used to render the program non-free.\n\
   The precise terms and conditions for copying, distribution and\n\
 modification follow.";
 
-
+/// @brief Section 0 to the GNU-GPL
 const std::string definitions = 
 "  0. Definitions.\n\
 \n\
@@ -134,6 +136,7 @@ work under this License, and how to view a copy of this License.  If\n\
 the interface presents a list of user commands or options, such as a\n\
 menu, a prominent item in the list meets this criterion.";
 
+/// @brief Section 1 to the GNU-GPL
 const std::string sourceCode =
 "  1. Source Code.\n\
 \n\
@@ -177,6 +180,7 @@ Source.\n\
   The Corresponding Source for a work in source code form is that\n\
 same work.";
 
+/// @brief Section 2 to the GNU-GPL
 const std::string basicPermissions = 
 "  2. Basic Permissions.\n\
 \n\
@@ -203,6 +207,7 @@ your copyrighted material outside their relationship with you.\n\
 the conditions stated below.  Sublicensing is not allowed; section 10\n\
 makes it unnecessary.";
 
+/// @brief Section 3 to the GNU-GPL
 const std::string protectingUsersRights =
 "  3. Protecting Users' Legal Rights From Anti-Circumvention Law.\n\
 \n\
@@ -220,7 +225,7 @@ modification of the work as a means of enforcing, against the work's\n\
 users, your or third parties' legal rights to forbid circumvention of\n\
 technological measures.";
 
-//4
+/// @brief Section 4 to the GNU-GPL
 const std::string copies = 
 "  4. Conveying Verbatim Copies.\n\
 \n\
@@ -235,7 +240,7 @@ recipients a copy of this License along with the Program.\n\
   You may charge any price or no price for each copy that you convey,\n\
 and you may offer support or warranty protection for a fee.";
 
-//5
+/// @brief Section 5 to the GNU-GPL
 const std::string modifiedVersions = 
 "  5. Conveying Modified Source Versions.\n\
 \n\
@@ -274,7 +279,7 @@ beyond what the individual works permit.  Inclusion of a covered work\n\
 in an aggregate does not cause this License to apply to the other\n\
 parts of the aggregate.";
 
-//6
+/// @brief Section 6 to the GNU-GPL
 const std::string nonSourceForms = 
 "  6. Conveying Non-Source Forms.\n\
 \n\
@@ -374,7 +379,7 @@ documented (and with an implementation available to the public in\n\
 source code form), and must require no special password or key for\n\
 unpacking, reading or copying.";
 
-//7
+/// @brief Section 7 to the GNU-GPL
 const std::string additionalTerms = 
 "  7. Additional Terms.\n\
 \n\
@@ -440,7 +445,7 @@ where to find the applicable terms.\n\
 form of a separately written license, or stated as exceptions;\n\
 the above requirements apply either way.";
 
-//8
+/// @brief Section 8 to the GNU-GPL
 const std::string termination = 
 "  8. Termination.\n\
 \n\
@@ -470,7 +475,7 @@ this License.  If your rights have been terminated and not permanently\n\
 reinstated, you do not qualify to receive new licenses for the same\n\
 material under section 10.";
 
-//9
+/// @brief Section 9 to the GNU-GPL
 const std::string acceptance = 
 "  9. Acceptance Not Required for Having Copies.\n\
 \n\
@@ -483,7 +488,7 @@ modify any covered work.  These actions infringe copyright if you do\n\
 not accept this License.  Therefore, by modifying or propagating a\n\
 covered work, you indicate your acceptance of this License to do so.";
 
-//10
+/// @brief Section 10 to the GNU-GPL
 const std::string autoLicencing = 
 "  10. Automatic Licensing of Downstream Recipients.\n\
 \n\
@@ -510,7 +515,7 @@ rights granted under this License, and you may not initiate litigation\n\
 any patent claim is infringed by making, using, selling, offering for\n\
 sale, or importing the Program or any portion of it.";
 
-//11
+/// @brief Section 11 to the GNU-GPL
 const std::string patents = 
 "  11. Patents.\n\
 \n\
@@ -581,7 +586,7 @@ or that patent license was granted, prior to 28 March 2007.\n\
 any implied license or other defenses to infringement that may\n\
 otherwise be available to you under applicable patent law.";
 
-//12
+/// @brief Section 12 to the GNU-GPL
 const std::string noSurrenderofFreedom = 
 "  12. No Surrender of Others' Freedom.\n\
 \n\
@@ -595,7 +600,7 @@ to collect a royalty for further conveying from those to whom you convey\n\
 the Program, the only way you could satisfy both those terms and this\n\
 License would be to refrain entirely from conveying the Program.";
 
-//13
+/// @brief Section 13 to the GNU-GPL
 const std::string useWithGNUAGPL = 
 "  13. Use with the GNU Affero General Public License.\n\
 \n\
@@ -608,7 +613,7 @@ but the special requirements of the GNU Affero General Public License,\n\
 section 13, concerning interaction through a network will apply to the\n\
 combination as such.";
 
-//14
+/// @brief Section 14 to the GNU-GPL
 const std::string revisedVersions = 
 "  14. Revised Versions of this License.\n\
 \n\
@@ -636,7 +641,7 @@ permissions.  However, no additional obligations are imposed on any\n\
 author or copyright holder as a result of your choosing to follow a\n\
 later version.";
 
-//15
+/// @brief Section 15 to the GNU-GPL
 const std::string warrantyDisclaimer = 
 "  15. Disclaimer of Warranty.\n\
 \n\
@@ -649,7 +654,7 @@ PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM\n\
 IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF\n\
 ALL NECESSARY SERVICING, REPAIR OR CORRECTION.";
 
-//16
+/// @brief Section 16 to the GNU-GPL
 const std::string limitationOfLiability =
 "  16. Limitation of Liability.\n\
 \n\
@@ -663,7 +668,7 @@ PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),\n\
 EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF\n\
 SUCH DAMAGES.";
 
-//17
+/// @brief Section 17 to the GNU-GPL
 const std::string interpretation = 
 "  17. Interpretation of Sections 15 and 16.\n\
 \n\
@@ -674,7 +679,7 @@ an absolute waiver of all civil liability in connection with the\n\
 Program, unless a warranty or assumption of liability accompanies a\n\
 copy of the Program in return for a fee.";
 
-
+/// @brief Map of Sections 0-17 of GNU-GPL
 const std::unordered_map<int16_t, std::string> terms {
   {0,definitions},
   {1,sourceCode},

@@ -19,25 +19,22 @@
 */
 
 #pragma once
-#ifndef ILLEGALCHARACTERERROR_H
-#define ILLEGALCHARACTERERROR_H
 
 #include "error.h"
 #include "../position/position.h"
 #include <string>
 
-/// Error class representing illegal characters encountered during lexing.
+/// @brief Error class representing illegal characters encountered during lexing.
 class IllegalCharacterError : public Error
 {
 public:
-    /// Default constructor.
+    /// @brief Default constructor.
     IllegalCharacterError();
 
-    /// Constructs an IllegalCharacterError with position range and details.
+    /// @brief Constructs an IllegalCharacterError with position range and details.
     /// @param posStart The starting position of the illegal character.
     /// @param posEnd The ending position of the illegal character.
     /// @param details Additional details about the error.
     IllegalCharacterError(const Position& posStart, const Position& posEnd, const std::string& details);
 };
 
-#endif // ILLEGALCHARACTERERROR_H
