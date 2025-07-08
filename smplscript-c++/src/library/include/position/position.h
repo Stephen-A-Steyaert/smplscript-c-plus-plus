@@ -23,29 +23,65 @@
 #define POSITION_H
 
 #include <string>
+#include <ostream>
 
-namespace std{
-/*
-* Position object to keep track of the current position in the source code.
-*/
-    class Position {
-    public:
-        Position(int index, int line, int col, std::string fileName, std::string fileContents);
-        Position* advance(char c);
-        Position* copy();
-        int getIndex();
-        std::string getFileName();
-        int getLineNumber();
+/// Represents a position in the source code, including index, line, column, and file metadata.
+class Position {
+public:
+    /// Default constructor. Initializes all values to zero or empty.
+    Position();
 
-    private:
-        int mIndex;
-        int mLine;
-        int mCol;
-        std::string mFileName;
-        std::string mFileContents;
+    /// Constructs a Position object with the given data.
+    /// @param index The character index in the file.
+    /// @param line The current line number.
+    /// @param col The current column number.
+    /// @param fileName The name of the source file.
+    /// @param fileContents The contents of the source file.
+    Position(int index, int line, int col, const std::string& fileName, const std::string& fileContents);
 
-    };
-    
-}
+    /// Returns a copy of this Position advanced by one character.
+    /// If the character is a newline, increments the line and resets the column.
+    /// @param c The character that was read.
+    /// @return A new Position object advanced by one character.
+    Position advance(char c) const;
 
-#endif
+    /// Returns a copy of this Position object.
+    /// @return A copy of the current Position.
+    Position copy() const;
+
+    /// Gets the character index.
+    /// @return The character index in the source file.
+    int getIndex() const;
+
+    /// Gets the source file name.
+    /// @return The file name string.
+    const std::string& getFileName() const;
+
+    /// Gets the current line number.
+    /// @return The current line number.
+    int getLineNumber() const;
+
+    /// Gets the current column number.
+    /// @return The current column number.
+    int getCol() const;
+
+    /// Gets the full source file contents.
+    /// @return The file contents.
+    const std::string& getFileContents() const;
+
+private:
+    int mIndex;              ///< The current character index in the file.
+    int mLine;               ///< The current line number.
+    int mCol;                ///< The current column number.
+    std::string mFileName;  ///< The name of the source file.
+    std::string mFileContents; ///< The full contents of the source file.
+};
+
+/// Prints a Position object to an output stream in a human-readable format.
+/// @param os The output stream.
+/// @param pos The Position object to print.
+/// @return Reference to the modified output stream.
+std::ostream& operator<<(std::ostream& os, const Position& pos);
+
+#endif // POSITION_H
+

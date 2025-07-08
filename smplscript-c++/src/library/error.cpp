@@ -19,23 +19,24 @@
 */
 
 
-#include <string>
+#include <iostream>
 #include "include/error/error.h"
 #include "include/position/position.h"
 
-// Constructor
-// Initializes the error name and details
-Error::Error(std::string errorName, std::Position* posStart,std::Position* posEnd, std::string details) {
-	mErrorName = errorName;
-	mDetails = details;
-	mPosStart = posStart;
-	mPosEnd = posEnd;
-}
-// toString function
-// Returns the error name and details as a string
-std::string Error::toString() {
-	std::string errorStr = mErrorName + ": " + mDetails + "\n";
-	errorStr += "File: " + mPosStart->getFileName() + " Line: " + std::to_string(mPosStart->getLineNumber()) + "\n";
+Error::Error(const std::string& errorName, const Position& posStart, const Position& posEnd, const std::string& details)
+    : mErrorName(errorName), mDetails(details), mPosStart(posStart), mPosEnd(posEnd) {}
 
-	return errorStr;
+const std::string& Error::getErrorName() const { return mErrorName; }
+
+const std::string& Error::getDetails() const { return mDetails; }
+
+const Position& Error::getStart() const { return mPosStart; }
+
+const Position& Error::getEnd() const { return mPosEnd; }
+
+std::ostream& operator<<(std::ostream& os, const Error& error)
+{
+    os << error.getErrorName() << ": " << error.getDetails() << "\n";
+    os << error.getStart();  // uses Position's operator<<
+    return os;
 }

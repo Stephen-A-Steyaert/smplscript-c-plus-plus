@@ -18,11 +18,12 @@
 
 */
 
-#include "include/error/illegalCharError.h"
-#include "include/error/error.h"
-#include "include/position/position.h"
-#include <string>
+#include "include/error/illegalCharacterError.h"
 
-// Constructor
-// Calls the Error constructor with the "Illegal Character" error name and details
-IllegalCharError::IllegalCharError(std::Position* posStart, std::Position* posEnd, std::string details) : Error("Illegal Character", posStart, posEnd, details) {}
+/// Default constructor delegates to base Error with empty parameters.
+IllegalCharacterError::IllegalCharacterError()
+    : Error("Illegal Character", Position(), Position(), "") {}
+
+/// Constructor initializes base Error with the error name and position info.
+IllegalCharacterError::IllegalCharacterError(const Position& posStart, const Position& posEnd, const std::string& details)
+    : Error("Illegal Character", posStart, posEnd, details) {}

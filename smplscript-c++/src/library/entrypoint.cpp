@@ -18,17 +18,12 @@
 
 */
 
-#include "include/entrypoint/entryPoint.h"
+#include "include/entrypoint/entrypoint.h"
 #include "include/lexer/lexer.h"
 #include <string>
 #include <vector>
 
-// run function
-// creates a Lexer object, generates tokens from input text, returns the result
-std::vector<std::Token> run(std::string fileName, std::string text) {
-	std::Lexer lexer = std::Lexer(fileName, text);
-
-	std::vector<std::Token> lexerResult =  lexer.generateTokens();
-
-	return lexerResult;
+std::vector<Token> run(const std::string& fileName, const std::string& text) {
+    Lexer lexer(fileName, text);
+    return lexer.generateTokens();
 }

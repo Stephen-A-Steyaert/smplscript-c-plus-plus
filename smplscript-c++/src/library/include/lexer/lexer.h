@@ -22,30 +22,41 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-#include "../token/token.h"
-#include "../position/position.h"
 #include <string>
 #include <vector>
+#include <cctype>  // for std::isspace in .cpp
+#include "../token/token.h"
+#include "../position/position.h"
 
-/*
-* Lexer object will be use to tokenize input code.
-*/
-namespace std{
+/// Performs lexical analysis on the input text, generating a list of tokens.
+class Lexer
+{
+public:
+    /// Default constructor. Initializes an empty Lexer.
+    Lexer();
 
-	class Lexer
-	{
-	public:
-		Lexer();
-		Lexer(std::string fileName, std::string text);
-		std::vector<std::Token> generateTokens();
-	private:
-		void advance();
-		std::Token makeNumber();
-		std::string mFileName;
-		std::string mText;
-		char mCurrentChar;
-		std::Position* mCurrentPos;
-	};
+    /// Constructs a Lexer with the given source file name and input text.
+    /// @param fileName The name of the source file.
+    /// @param text The source code text to lex.
+    Lexer(const std::string& fileName, const std::string& text);
 
-}
-#endif
+    /// Generates a vector of tokens by analyzing the input text.
+    /// @return A vector containing all tokens generated from the source.
+    std::vector<Token> generateTokens();
+
+private:
+    /// Advances the current position and updates the current character.
+    void advance();
+
+    /// Creates a numeric token (int or float) from the current position in the text.
+    /// @return A Token representing the number found.
+    Token makeNumber();
+
+    std::string mFileName;   ///< The source file name.
+    std::string mText;       ///< The source code text being lexed.
+    char mCurrentChar;       ///< The current character under examination.
+    Position mCurrentPos;    ///< The current position in the source code.
+};
+
+#endif // LEXER_H
+

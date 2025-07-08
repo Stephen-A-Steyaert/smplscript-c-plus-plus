@@ -22,39 +22,57 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
-#include <optional>
 #include <string>
+#include <variant>
+#include <ostream>
 
-
-namespace std{
-
-/*
-* Token object, will be used in the Lexer to represent pieces of the code, and will
-* be used in the Parser to represent the abrstract syntax tree.
-*/
+	/// Represents a lexical token in the language, with optional associated value.
 	class Token
 	{
-	// Public methods and fields
 	public:
-		struct valueReturn {
-			std::string stringValue;
-			int intValue;
-		};
-		Token();
-		Token(std::string tokenType);
-		Token(std::string tokenType, std::string stringValue);
-		Token(std::string tokentype, int intValue);
-		valueReturn getValue();
-		std::string getTokenType();
-		std::string toString();
+		/// Variant type that can store an int, float, string, or no value.
+		using Value = std::variant<std::monostate, int, float, std::string>;
 
-	// Private Fields
 	private:
-		std::optional<std::string> mStringValue;
-		std::optional<long long int> mIntValue;
-		std::string mTokenType;
+		std::string mTokenType; ///< The type of the token (e.g. "INT", "PLUS", etc.)
+		Value mValue; ///< The value associated with the token (if any)
+
+	public:
+		/// Default constructor. Token type and value are unset.
+		Token();
+
+		/// Constructs a token with a given type and no value.
+		/// @param tokenType The type of token.
+		explicit Token(std::string tokenType);
+
+		/// Constructs a token with an integer value.
+		/// @param tokenType The type of token.
+		/// @param intValue The integer value associated with the token.
+		Token(std::string tokenType, int intValue);
+
+		/// Constructs a token with a float value.
+		/// @param tokenType The type of token.
+		/// @param floatValue The float value associated with the token.
+		Token(std::string tokenType, float floatValue);
+
+		/// Constructs a token with a string value.
+		/// @param tokenType The type of token.
+		/// @param stringValue The string value associated with the token.
+		Token(std::string tokenType, std::string stringValue);
+
+		/// Gets the value stored in the token.
+		/// @return A const reference to the token's value.
+		const Value& getValue() const;
+
+		/// Gets the type string of the token.
+		/// @return A const reference to the token type.
+		const std::string& getTokenType() const;
 	};
 
-}
+	/// Prints a token to an output stream in the format "TYPE[:value]".
+	/// @param os The output stream.
+	/// @param token The token to print.
+	/// @return The modified output stream.
+	std::ostream& operator<<(std::ostream& os, const Token& token);
 
-#endif
+#endif // TOKEN_H

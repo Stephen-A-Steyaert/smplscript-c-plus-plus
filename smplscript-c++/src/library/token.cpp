@@ -19,58 +19,53 @@
 */
 
 #include "include/token/token.h"
-#include <string>
-#include <optional>
-// #include 
+#include <iostream>
+#include <utility>
 
-/*
-* Defining all of the Token object's functions
-*/
-// Default constructor
-// Initializes all fields to null
-std::Token::Token() {
-	mTokenType = nullptr;
-}
-// Constructor
-// Initializes the token type field to the input token type
-std::Token::Token(std::string tokenType) {
-	mTokenType = tokenType;
-}
-// Constructor
-// Initializes the token type field to the input token type,
-// and the string value field to the input string value
-std::Token::Token(std::string tokenType, std::string stringValue) {
-	mTokenType = tokenType;
-	mStringValue = stringValue;
-}
-// Constructor
-// Initializes the token type field to the input token type,
-// and the int value field to the input int value
-std::Token::Token(std::string tokenType, int intValue) {
-	mTokenType = tokenType;
-	mIntValue = intValue;
-}
-// getValue function
-// Returns a valueReturn struct containing the string and int values
-std::Token::valueReturn std::Token::getValue() {
-	valueReturn returnValue;
-	returnValue.stringValue = mStringValue.value();
-	returnValue.intValue = mIntValue.value();
-	return returnValue;
-}
-// getTokenType function
-// Returns the token type
-std::string std::Token::getTokenType() {
-	return mTokenType;
-}
-// toString function to Print out Token
-std::string std::Token::toString() {
-	std::string out = mTokenType;
-	if (mStringValue.has_value()) {
-		out += ":" + mStringValue.value();
+
+	// Default constructor
+	Token::Token() : mTokenType(""), mValue(std::monostate{}) {}
+
+	// Token type only
+	Token::Token(std::string tokenType)
+		: mTokenType(std::move(tokenType)), mValue(std::monostate{}) {}
+
+	// Token with int value
+	Token::Token(std::string tokenType, int intValue)
+		: mTokenType(std::move(tokenType)), mValue(intValue) {}
+
+	// Token with float value
+	Token::Token(std::string tokenType, float floatValue)
+		: mTokenType(std::move(tokenType)), mValue(floatValue) {}
+
+	// Token with string value
+	Token::Token(std::string tokenType, std::string stringValue)
+		: mTokenType(std::move(tokenType)), mValue(std::move(stringValue)) {}
+
+	// Accessors
+	const Token::Value& Token::getValue() const {
+		return mValue;
 	}
-	else if (mIntValue.has_value()) {
-		out += ":" + std::to_string(mIntValue.value());
+
+	const std::string& Token::getTokenType() const {
+		return mTokenType;
 	}
-	return out;
-}
+
+	// Stream output operator
+	std::ostream& operator<<(std::ostream& os, const Token& token)
+	{
+		os << token.getTokenType();
+
+		const Token::Value& val = token.getValue();
+
+		std::visit([&os](auto&& arg) {
+			using T = std::decay_t<decltype(arg)>;
+			if constexpr (std::is_same_v<T, std::monostate>) {
+				// continue to else
+			} else {
+				os << ":" << arg;
+			}
+		}, val);
+
+		return os;
+	}

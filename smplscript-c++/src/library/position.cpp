@@ -18,53 +18,74 @@
 
 */
 
-
 #include "include/position/position.h"
-#include <string>
 
-// Constructor
-// Initializes the Position object with the given index, line, and column.
-std::Position::Position(int index, int line, int col, std::string fileName, std::string fileContents) {
-    mIndex = index;
-    mLine = line;
-    mCol = col;
-    mFileName = fileName;
-    mFileContents = fileContents;
-}
+/// Default constructor. Initializes all members to default values.
+Position::Position()
+    : mIndex(0), mLine(0), mCol(0), mFileName(""), mFileContents("") {}
 
-// advance function
-// Advances the index and column by 1. May also increment the line and reset the column 
-// if the character is a newline.
-std::Position* std::Position::advance(char c) {
-    mIndex++;
-    mCol++;
-    if (c == '\n') {
-        mLine++;
-        mCol = 0;
+/// Parameterized constructor
+Position::Position(int index, int line, int col, const std::string &fileName, const std::string &fileContents)
+    : mIndex(index), mLine(line), mCol(col), mFileName(fileName), mFileContents(fileContents) {}
+
+/// Advances the position by one character
+Position Position::advance(char c) const
+{
+    Position result = *this;
+    result.mIndex++;
+    result.mCol++;
+    if (c == '\n')
+    {
+        result.mLine++;
+        result.mCol = 0;
     }
-    return this;
-} 
-
-// copy function
-// Returns a new Position object with the same index, line, and column as the current object.
-std::Position* std::Position::copy() {
-    return new Position(mIndex, mLine, mCol, mFileName, mFileContents);
+    return result;
 }
 
-// getIndex function
-// Returns the current index of the Position object.
-int std::Position::getIndex() {
+/// Returns a copy of the current position
+Position Position::copy() const
+{
+    return Position(mIndex, mLine, mCol, mFileName, mFileContents);
+}
+
+/// Returns the index
+int Position::getIndex() const
+{
     return mIndex;
 }
 
-// getFileName function
-// Returns the file name of the Position Object.
-std::string std::Position::getFileName() {
+/// Returns the file name
+const std::string &Position::getFileName() const
+{
     return mFileName;
 }
 
-// getLineNumber function
-// Returns the current line number of the Position object.
-int std::Position::getLineNumber() {
+/// Returns the line number
+int Position::getLineNumber() const
+{
     return mLine;
+}
+
+/// Returns the column number
+int Position::getCol() const
+{
+    return mCol;
+}
+
+/// Returns the file contents
+const std::string &Position::getFileContents() const
+{
+    return mFileContents;
+}
+
+/// Stream output operator for Position.
+/// Outputs the file name, line number, and column in a readable format.
+/// Example output: "main.smpl Line: 12 Col: 5"
+/// @param os Output stream to write to.
+/// @param pos Position object to print.
+/// @return Reference to the output stream.
+std::ostream &operator<<(std::ostream &os, const Position &pos)
+{
+    os << pos.getFileName() << " Line: " << pos.getLineNumber() + 1 << " Col: " << pos.getCol() + 1;
+    return os;
 }

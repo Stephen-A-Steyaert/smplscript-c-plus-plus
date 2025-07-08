@@ -25,20 +25,46 @@
 #include <string>
 #include "../include/position/position.h"
 
-/*
-* Error object is the base class for future errors
-*/
-
+/// Represents a language error with positional context in the source code.
+/// This is the base class for all error types in smplscript, such as syntax or runtime errors.
 class Error
 {
 public:
-	Error(std::string errorName, std::Position* posStart, std::Position* posEnd, std::string details);
-	std::string toString();
+    /// Constructs an Error object.
+    /// @param errorName The name/type of the error (e.g., "SyntaxError").
+    /// @param posStart The starting position of the error.
+    /// @param posEnd The ending position of the error.
+    /// @param details A description of the error.
+    Error(const std::string& errorName, const Position& posStart, const Position& posEnd, const std::string& details);
+
+    /// Gets the error name/type.
+    /// @return The error name string.
+    const std::string& getErrorName() const;
+
+    /// Gets the error message/details.
+    /// @return The error details string.
+    const std::string& getDetails() const;
+
+    /// Gets the start position of the error.
+    /// @return A const reference to the starting Position.
+    const Position& getStart() const;
+
+    /// Gets the end position of the error.
+    /// @return A const reference to the ending Position.
+    const Position& getEnd() const;
+
 private:
-	std::string mErrorName;
-	std::string mDetails;
-	std::Position* mPosStart;
-	std::Position* mPosEnd;
+    std::string mErrorName;   ///< The type/name of the error (e.g. "SyntaxError")
+    std::string mDetails;     ///< Description or message of the error
+    Position mPosStart;       ///< Start position in the source file
+    Position mPosEnd;         ///< End position in the source file
 };
 
-#endif
+/// Prints an Error object to an output stream in a human-readable format.
+/// @param os The output stream.
+/// @param error The Error object to print.
+/// @return Reference to the modified output stream.
+std::ostream& operator<<(std::ostream& os, const Error& error);
+
+#endif // ERROR_H
+
